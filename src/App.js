@@ -7,6 +7,8 @@ import { Footer } from './components/footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Navbar, Nav} from 'react-bootstrap';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';//using 'as' simplifies BrowseRouter, meaning when we need to access this we can just type 'Router'
+import { Create } from './components/create';
+import { Read } from './components/read';
 
 
 //In order to become a component, the class must extend Component
@@ -27,8 +29,8 @@ class App extends Component {
         <br />
         <Switch>
           <Route path = '/' component={Content} exact/> {/* by specifying path, path must be exactly this to dsplay component */}
-          <Route path = '/create' component={Header} exact/>
-          <Route path = '/read' component={Footer} exact/>
+          <Route path = '/create' component={Create} exact/>
+          <Route path = '/read' component={Read} exact/>
         </Switch>
         
       </div>
