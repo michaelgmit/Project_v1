@@ -28,7 +28,7 @@ class App extends Component {
         </Navbar> 
         <br />
         <Switch>
-          <Route path = '/' component={Content} exact/> {/* by specifying path, path must be exactly this to dsplay component */}
+          <Route path = '/' component={Content} exact/> {/* by specifying path, path must be exactly this to display component */}
           <Route path = '/create' component={Create} exact/>
           <Route path = '/read' component={Read} exact/>
         </Switch>
