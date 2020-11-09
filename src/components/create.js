@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 export class Create extends React.Component {
   constructor() {
@@ -47,6 +48,21 @@ export class Create extends React.Component {
         " " +
         this.state.Poster
     );
+
+    const newMovie = {
+      title: this.state.Title,
+      year: this.state.Year,
+      poster: this.state.Poster,
+    };
+
+    axios
+      .post("http://localhost:4000/api/movies", newMovie) //returns promise
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   render() {
