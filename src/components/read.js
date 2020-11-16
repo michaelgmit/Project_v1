@@ -14,7 +14,7 @@ export class Read extends React.Component {
         "http://localhost:4000/api/movies"
       )
       .then((response) => {
-        this.setState({ movies: response.data.movies });
+        this.setState({ movies: response.data });
       }) //what happens when it works
       .catch((error) => {
         console.log(error);
