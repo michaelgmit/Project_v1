@@ -7,7 +7,10 @@ export class Movies extends React.Component {
       /*map function takes movies and splits into each section*/
     }
     return this.props.movies.map((movie) => {
-      return <MovieItem movie={movie}></MovieItem>;
+      //pass movie item AND reload data method 
+      //passed reload data method from its parent - read.js
+      //movies.js will now pass to all of its children ie/read.js grandchildren
+      return <MovieItem movie={movie} ReloadData={this.props.ReloadData}></MovieItem>;
     });
   } //end render method
 } //end component
