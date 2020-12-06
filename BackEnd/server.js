@@ -23,7 +23,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //mongoose connection
-const myConnectionString = "mongodb+srv://admin:admin@cluster0.9jcxs.mongodb.net/movies?retryWrites=true&w=majority";
+const myConnectionString =
+  "mongodb+srv://admin:admin@cluster0.9jcxs.mongodb.net/movies?retryWrites=true&w=majority";
 mongoose.connect(myConnectionString, { useNewUrlParser: true });
 
 const Schema = mongoose.Schema;
@@ -61,23 +62,44 @@ app.get("/api/movies", (req, res) => {
   //find all records in db and send back
   MovieModel.find((err, data) => {
     res.json(data);
-  })
+  });
 
   // res.status(200).json({
   //   message: "Everything is ok",
   //   movies: mymovies}); //can pass as many things as you need
-
-})
+});
 
 // listen for http that has delete method
-app.delete('/api/movies/:id' , (req,res)=>{
-  console.log("Delete Movie: "+req.params.id);
+app.delete("/api/movies/:id", (req, res) => {
+  console.log("Delete Movie: " + req.params.id);
 
   // interact with data model to find record, deletes record
-  MovieModel.findByIdAndDelete(req.params.id,(err,data)=>{
+  MovieModel.findByIdAndDelete(req.params.id, (err, data) => {
     res.send(data);
-  })
-})
+  });
+});
+
+//take id and return data with associated movie
+app.get("/api/movies/:id", (req, res) => {
+  console.log(req.params.id);
+
+  MovieModel.findById(req.params.id, (err, data) => {
+    res.json(data);
+  });
+});
+
+//method for editing record
+app.put("/api/movies/:id", (req, res) => {
+  console.log("Update movie: " + req.params.id);
+  //pass up object containing new movie data
+  console.log(req.body);
+
+  //interact with db
+  MovieModel.findByIdAndUpdate(req.params.id,req.body, {new:true},//{new:true} for creating a new record
+    (err,data)=>{
+      res.send(data);
+    })
+});//makes asynchronous call to db, finds record with id and updates it
 
 app.post("/api/movies", (req, res) => {
   console.log("Movie Received!");
